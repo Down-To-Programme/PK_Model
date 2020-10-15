@@ -39,7 +39,9 @@ for model in [model1_args, model2_args]:
         model['Q_p1'], model['V_c'], model['V_p1'], model['CL'], model['X']
     ]
     sol = scipy.integrate.solve_ivp(
-        rhs, [t_eval[0], t_eval[-1]], y0, t_eval=t_eval, args=args
+        fun=lambda t, y: rhs(t, y, *args),
+        t_span=[t_eval[0], t_eval[-1]],
+        y0=y0, t_eval=t_eval
     )
     plt.plot(sol.t, sol.y[0, :], label=model['name'] + '- q_c')
     plt.plot(sol.t, sol.y[1, :], label=model['name'] + '- q_p1')
