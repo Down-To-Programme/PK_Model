@@ -64,6 +64,7 @@ setup(
         'numpy',
         'matplotlib',
         'scipy',
+        'PyQt5',
     ],
     extras_require={
         'docs': [
