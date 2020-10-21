@@ -33,8 +33,7 @@ class Model:
         Add a peripheral compartment to the model.
         """
         self.__n_compartments += 1
-        self.__compartments.append({'Vp':Vp, 'Qp':Qp})
-
+        self.__compartments.append({'Vp': Vp, 'Qp': Qp})
 
     @property
     def Vps(self):
