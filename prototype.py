@@ -2,8 +2,10 @@ import matplotlib.pylab as plt
 import numpy as np
 import scipy.integrate
 
+
 def dose(t, X):
     return X
+
 
 def rhs(t, y, Q_p1, V_c, V_p1, CL, X):
     q_c, q_p1 = y
@@ -11,6 +13,7 @@ def rhs(t, y, Q_p1, V_c, V_p1, CL, X):
     dqc_dt = dose(t, X) - q_c / V_c * CL - transition
     dqp1_dt = transition
     return [dqc_dt, dqp1_dt]
+
 
 model1_args = {
     'name': 'model1',
