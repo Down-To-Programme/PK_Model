@@ -22,7 +22,7 @@ class Model:
     def __init__(self, Vc, Vps, Qps):
         self.__compartments = []
         self.__central_volume = Vc
-        self.__n_compartments = 0
+        self.__n_compartments = 1 #nb Includes central compartment
 
         for Vp, Qp in zip(Vps, Qps):
             self.add_compartment(Vp, Qp)
