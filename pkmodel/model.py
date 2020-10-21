@@ -20,10 +20,11 @@ class Model:
         and peripheral compartments
 
     """
-    def __init__(self, Vc, Vps, Qps):
+    def __init__(self, Vc, Vps, Qps, CL):
         self.__compartments = []
         self.__central_volume = Vc
-        self.__n_compartments = 0
+        self.__n_compartments = 1 #nb Includes central compartment
+        self.__CL = CL
 
         for Vp, Qp in zip(Vps, Qps):
             self.add_compartment(Vp, Qp)
@@ -63,3 +64,10 @@ class Model:
         Returns the number of peripheral compartments.
         """
         return self.__n_compartments
+
+    @property
+    def CL(self):
+        """
+        Returns the clearance/elimination rate from the central compartment.
+        """
+        return self.__CL
