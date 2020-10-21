@@ -22,11 +22,11 @@ git pull origin master
 
 (Create new branch) 
 
-git branch <new-branch> master 
+git branch new-branch master 
 
-git <checkout new-branch> 
+git checkout new-branch 
 
-git branch –show-current 
+git branch --show-current 
 
 Pushing 
 
