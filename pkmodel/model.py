@@ -23,9 +23,8 @@ class Model:
     def __init__(self, Vc, Vps, Qps, CL):
         self.__compartments = []
         self.__central_volume = Vc
-        self.__n_compartments = 1 #nb Includes central compartment
+        self.__n_compartments = 1  # nb Includes central compartment
         self.__CL = CL
-
         for Vp, Qp in zip(Vps, Qps):
             self.add_compartment(Vp, Qp)
 

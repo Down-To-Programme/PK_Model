@@ -32,7 +32,7 @@ class Solution:
         V_c = self.model.Vc
 
         CL = self.model.CL
-        cleared = state[0] / Vc * CL
+        cleared = state[0] / V_c * CL
         dq_dt = [0]
         flux_sum = 0
         # loop over peripheral compartments
