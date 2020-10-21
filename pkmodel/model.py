@@ -16,7 +16,8 @@ class Model:
     Vps: list of floats
         list of volumes of peripheral compartments
     Qps: list of floats
-        list of transition rates between central compartment and peripheral compartments
+        list of transition rates between central compartment
+        and peripheral compartments
 
     """
     def __init__(self, Vc, Vps, Qps):
@@ -44,7 +45,8 @@ class Model:
     @property
     def Qps(self):
         """
-        Transition rates between central compartment and peripheral compartments.
+        Transition rates between central compartment
+        and peripheral compartments.
         """
         return [elem['Qp'] for elem in self.__compartments]
 
