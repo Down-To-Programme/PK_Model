@@ -20,7 +20,6 @@ class Model:
 
     """
     def __init__(self, Vc, Vps, Qps):
-        self.value = value
         self.__compartments = []
         self.__central_volume = Vc
         self.__n_compartments = 0
@@ -28,7 +27,7 @@ class Model:
         for Vp, Qp in zip(Vps, Qps):
             self.add_compartment(Vp, Qp)
 
-    def add_compartment(Vp=1, Qp=1):
+    def add_compartment(self, Vp=1, Qp=1):
         """
         Add a peripheral compartment to the model.
         """

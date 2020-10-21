@@ -2,6 +2,9 @@
 # Solution class
 #
 
+import numpy as np
+import scipy.integrate
+
 class Solution:
     """A Pharmokinetic (PK) model solution
 
@@ -33,7 +36,7 @@ class Solution:
             V_pi = self.model.Vps[comp-1]
             flux =  Q_pi * (state[0] / V_c - state[comp] / V_pi)
             dq_dt.append( flux )
-            flux_sum + = flux
+            flux_sum += flux
         dq_dt[0] = dose(t, X) - cleared - flux_sum
         return dq_dt
 
