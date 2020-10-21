@@ -17,12 +17,12 @@ class Solution:
     model: using model class
 
     """
-    def __init__(self, model, dose, tmax=1, nsteps=1000):
+    def __init__(self, model, dose, tmax=1, nsteps=1000): 
+        ## dose -> protocol ; protocol.dose
         self.model = model
-        self.y0 = np.zeros(self.model.size)  # only central compartment n=1, one periphal comartment n=2, two periphal compartment n=3
-        self.sol = np.zeros(self.model.size)
         self.t_eval = np.linspace(0, tmax, nsteps)
         self.dose = dose
+        self.solver()
 
     def rhs(self, t, y): # so far only intravenous
         state = y
@@ -42,7 +42,8 @@ class Solution:
         return dq_dt
 
     def solver(self):
-        args = []
+        self.y0 = np.zeros(self.model.size)  # only central compartment n=1, one periphal comartment n=2, two periphal compartment n=3
+        self.sol = np.zeros(self.model.size)
         sol = scipy.integrate.solve_ivp(
             fun=lambda t, y: self.rhs(t, y),
             t_span=[self.t_eval[0], self.t_eval[-1]],
