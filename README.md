@@ -1,3 +1,6 @@
+![Run unit tests for pkmodel](https://github.com/D-own-T-o-P-rogramme/PK_Model/workflows/Run%20unit%20tests%20for%20pkmodel/badge.svg)
+
+
 # 2020-software-engineering-projects-pk
 starter pk modelling repository
 Workflow 
