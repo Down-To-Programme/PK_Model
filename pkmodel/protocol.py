@@ -42,7 +42,6 @@ class Protocol:
         self.dose_times.sort()
     
     
-    @property
     def dose_time_function(self, t):
         #if self.multiple: #multiple dose function
         #    n = 0
