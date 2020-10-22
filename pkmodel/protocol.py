@@ -57,7 +57,8 @@ class Protocol:
         self.continuous = continuous
         self.instantaneous = instantaneous
         self.continuous_period = continuous_period
-        self.dose_times = dose_times.sort()
+        self.dose_times = dose_times
+        self.dose_times.sort()
 
     def change_dose(self, dose_amount):
         """
