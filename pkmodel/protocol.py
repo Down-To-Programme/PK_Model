@@ -132,7 +132,7 @@ class Protocol:
 
         if self.continuous:
             if t <= self.continuous_period[1] and \
-               t >= self.continuous_period[0]:
+               t > self.continuous_period[0]:
                 dose_t_continuous = self.dose_amount
 
         dose_t = dose_t_continuous + dose_t_instant
