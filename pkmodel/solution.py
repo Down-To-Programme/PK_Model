@@ -2,6 +2,7 @@
 # Solution class
 #
 import numpy as np
+import matplotlib.pyplot as plt
 import scipy.integrate
 
 
@@ -81,3 +82,42 @@ class Solution:
         self.sol = sol
         return sol
 
+    def generate_plot(self, separate=False):
+        """
+        Generate a plot of the drug quantity per
+        compartment over time for the corresponding model
+
+        :param separate: set to True if you want 1 plot per compartment
+        :returns: matplotlib figure
+        """
+        sol = self.solver()
+        n = self.model.size
+        if separate:
+            fig = plt.figure(figsize=(n * 4.0, 3.0))
+            central = fig.add_subplot(1, n, 1)
+            central.plot(sol.t, sol.y[0, :], label='- q_c')
+            central.legend()
+            central.set_title('Central compartment')
+        else:
+            fig = plt.figure()
+            plt.plot(sol.t, sol.y[0, :], label='- q_c')
+
+        # add legend and axes labels
+        plt.ylabel('drug mass [ng]')
+        plt.xlabel('time [h]')
+
+        # loop over peripheral compartments and plot drug quantity for each
+        for i in range(n - 1):
+            label = '- q_p' + str(i + 2)
+            if separate:
+                subplot = fig.add_subplot(1, n, i + 2)
+                subplot.plot(sol.t, sol.y[i + 1, :], label=label)
+                subplot.legend()
+                subplot.set_xlabel('time [h]')
+                subplot.set_title('Peripheral compartment #' + str(i + 1))
+            else:
+                plt.plot(sol.t, sol.y[i + 1, :], label=label)
+        plt.legend()
+        fig.tight_layout()
+        plt.show()
+        return fig
