@@ -136,7 +136,7 @@ class Solution:
 
     def generate_plot(self, separate=False):
         """
-        Generate a plot of the drug quantity per
+        Generate a figure of the drug quantity per
         compartment over time for the corresponding model
 
         :param separate: set to True if you want 1 plot per compartment
@@ -171,5 +171,7 @@ class Solution:
                 plt.plot(sol.t, sol.y[i + 1, :], label=label)
         plt.legend()
         fig.tight_layout()
-        plt.show()
+        # plt.show() #I think that this should be a separate function
         return fig
+
+
