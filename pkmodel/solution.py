@@ -72,7 +72,7 @@ class Solution:
             # two periphal compartment n=3
             self.y0 = np.zeros(self.model.size)
             self.sol = np.zeros(self.model.size)
-            
+
         sol = scipy.integrate.solve_ivp(
             fun=lambda t, y: step_func(t, y),
             t_span=[self.t_eval[0], self.t_eval[-1]],
