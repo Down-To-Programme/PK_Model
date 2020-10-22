@@ -29,6 +29,7 @@ class Solution:
         CL = self.model.CL
         cleared = state[0] / Vc * CL
         dq_dt = [0]  # [dqc, dq_p1, dq_p2]
+
         flux_sum = 0
         # loop over peripheral compartments
         for comp in range(1, self.model.size):
@@ -71,7 +72,7 @@ class Solution:
             # two periphal compartment n=3
             self.y0 = np.zeros(self.model.size)
             self.sol = np.zeros(self.model.size)
-
+            
         sol = scipy.integrate.solve_ivp(
             fun=lambda t, y: step_func(t, y),
             t_span=[self.t_eval[0], self.t_eval[-1]],
