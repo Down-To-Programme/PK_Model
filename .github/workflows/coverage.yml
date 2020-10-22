@@ -1,5 +1,5 @@
-# This workflow will install Python dependencies, run tests and lint with a variety of Python versions
-# For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
+# This workflow will install coverage and codecov, and run these tests on an ubuntu-latest os
+# To see the results go to: https://codecov.io/gh/Down-To-Programme/PK_Model
 
 name: Run coverage
 
@@ -35,4 +35,4 @@ jobs:
       env:
         CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
       run: |
-      codecov
+        codecov
