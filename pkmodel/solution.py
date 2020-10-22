@@ -79,9 +79,9 @@ class Solution:
         ----------
         t: time
         y: state vector [q0, qc, q_p1, q_p2]
-            y has one dim more than in intravenous protocol
-            q0 is an additional compartment from which the drug
-            is absorbed to the central compartment
+        y has one dim more than in intravenous protocol
+        q0 is an additional compartment from which the drug
+        is absorbed to the central compartment
         '''
         state = y
         Vc = self.model.Vc  # volume of the main compartment
