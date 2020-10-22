@@ -45,7 +45,7 @@ class SolutionTest(unittest.TestCase):
         mock_protocol.dose_time_function.return_value = 1
 
         solution = pk.Solution(model=mock_model, protocol=mock_protocol)
-        self.assertEqual(solution.sol.y.shape[0], solution.model.size)
+        self.assertEqual(solution.sol.y.shape[0], solution.model.size + 1)
         self.assertEqual(solution.sol.y.shape[1], solution.t_eval.shape[0])
         self.assertIsInstance(solution.t_eval, np.ndarray)
         self.assertIsInstance(solution.y0, np.ndarray)
