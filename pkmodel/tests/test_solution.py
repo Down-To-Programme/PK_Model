@@ -33,8 +33,6 @@ class SolutionTest(unittest.TestCase):
         mock_model.CL = 1
         mock_model.Qps = [1]
         mock_model.Vps = [1]
-
-
         mock_protocol = Mock()
         mock_protocol.subcutaneous = False
         mock_protocol.dose_time_function.return_value = 1
