@@ -39,10 +39,3 @@ class ProtocolTest(unittest.TestCase):
         self.assertEqual(dose_2, 10)
         self.assertEqual(dose_3, 10)
         self.assertEqual(dose_4, 0)
-
-
-dosing = pk.Protocol(dose_amount=10, subcutaneous=True,
-                     k_a=0.3, continuous=True, continuous_period=[1, 2],
-                     instantaneous=True, dose_times=[0, 1, 2, 3])
-
-print(dosing.dose_times)
