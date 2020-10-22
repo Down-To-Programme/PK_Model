@@ -117,10 +117,12 @@ class Solution:
             step_func = self.rhs_subcutaneous
             # subcutaneous protocol has one more dimension
             # than intravenous protocol
+            # initial condition y0
             self.y0 = np.zeros(self.model.size + 1)
             self.sol = np.zeros(self.model.size + 1)
         else:
             step_func = self.rhs_intravenous
+            # intial condition
             self.y0 = np.zeros(self.model.size)
             self.sol = np.zeros(self.model.size)
 
