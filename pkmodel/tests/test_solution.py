@@ -29,7 +29,6 @@ class SolutionTest(unittest.TestCase):
         self.assertIsInstance(solution.t_eval, np.ndarray)
         self.assertIsInstance(solution.y0, np.ndarray)
 
-
     def test_subcutaneous(self):
         """
         Tests Solution creation for intravenous protocol.
