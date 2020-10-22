@@ -1,5 +1,8 @@
 ![Run unit tests for pkmodel](https://github.com/D-own-T-o-P-rogramme/PK_Model/workflows/Run%20unit%20tests%20for%20pkmodel/badge.svg)
+
 [![BCH compliance](https://bettercodehub.com/edge/badge/Down-To-Programme/PK_Model?branch=master)](https://bettercodehub.com/)
+
+[![codecov](https://codecov.io/gh/Down-To-Programme/PK_Model/branch/master/graph/badge.svg?token=UXOY8KCZQI)](undefined)
 
 
 # 2020-software-engineering-projects-pk
