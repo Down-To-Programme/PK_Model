@@ -19,7 +19,7 @@ class ProtocolTest(unittest.TestCase):
         self.assertEqual(dosing.subcutaneous, True)
         self.assertEqual(dosing.k_a, 0.3)
         self.assertEqual(dosing.continuous, True)
-        self.assertEqual(dosing.continuous, [1, 2])
+        self.assertEqual(dosing.continuous_period, [1, 2])
         self.assertEqual(dosing.instantaneous, True)
         self.assertEqual(dosing.dose_times, [0, 1, 2, 3])
 
