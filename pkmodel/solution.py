@@ -171,7 +171,7 @@ class Solution:
                 plt.plot(sol.t, sol.y[i + 1, :], label=label)
         plt.legend()
         fig.tight_layout()
-        # plt.show() #I think that this should be a separate function
+        #plt.show() #I think that this should be a separate function
         return fig
 
 
