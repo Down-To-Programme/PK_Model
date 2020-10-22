@@ -10,6 +10,8 @@ Welcome to PK_model's documentation!
    :maxdepth: 2
    :caption: Contents:
 
+   solution
+   
 .. automodule:: model
    :members:
 
@@ -18,6 +20,7 @@ Welcome to PK_model's documentation!
 
 .. automodule:: protocol
    :members:
+   
    
 Indices and tables
 ==================
