@@ -41,17 +41,15 @@ class Protocol:
         self.dose_times.sort()
 
     def dose_time_function(self, t):
-        #if self.multiple: #multiple dose function
-        #    n = 0
-        #    for timepoint in self.dose_times:
-        #        if timepoint <= t:
-        #            n += 1
-        #    dose_t_multiple = n * self.dose_amount
+        dose_t_continuous, dose_t_multiple = 0, 0
+        #if self.multiple:
+        #    if t in self.dose_times:
+        #        dose_t_multiple = self.dose_amount
+
         if self.continuous:
             if t <= self.continuous_period[1] and \
                t >= self.continuous_period[0]:
                 dose_t_continuous = self.dose_amount
-            else:
-                dose_t_continuous = 0
-        dose_t = dose_t_continuous
+
+        dose_t = dose_t_continuous + dose_t_multiple
         return dose_t
