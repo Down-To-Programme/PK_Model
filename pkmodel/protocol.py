@@ -1,7 +1,3 @@
-#
-# Protocol class
-#
-
 class Protocol:
     """A Pharmokinetic (PK) protocol
 
@@ -42,9 +38,9 @@ class Protocol:
 
     def dose_time_function(self, t):
         dose_t_continuous, dose_t_multiple = 0, 0
-        #if self.multiple:
-        #    if t in self.dose_times:
-        #        dose_t_multiple = self.dose_amount
+        if self.multiple:
+            if t in self.dose_times:
+                dose_t_multiple = self.dose_amount
 
         if self.continuous:
             if t <= self.continuous_period[1] and \
