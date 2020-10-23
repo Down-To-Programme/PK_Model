@@ -1,0 +1,14 @@
+certifi==2020.6.20
+cycler==0.10.0
+flake8==3.8.4
+kiwisolver==1.2.0
+matplotlib==3.3.2
+mccabe==0.6.1
+numpy==1.19.2
+Pillow==8.0.0
+pycodestyle==2.6.0
+pyflakes==2.2.0
+pyparsing==2.4.7
+python-dateutil==2.8.1
+scipy==1.5.3
+six==1.15.0
