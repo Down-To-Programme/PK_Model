@@ -172,7 +172,6 @@ class Solution:
                 model.plot(sol.t, sol.y[i + 1, :], label=label)
         plt.legend()
         fig.tight_layout()
-        #plt.show()
         return fig
 
     def compare_plots(self, solution_2):
@@ -244,7 +243,7 @@ class Solution:
         #plt.show()
         return fig
 
-    def generate_plot(self, compare=None, separate=False):
+    def generate_plot(self, compare=None, separate=False, show=False, savefig=False):
         """
         Calls appropriate function to generate plots of the drug
         quantity per compartment over time for the corresponding model
@@ -266,6 +265,15 @@ class Solution:
                 fig = self.compare_plots(compare)
             elif separate:
                 fig = self.compare_separate(compare)
+
+        if show:
+            fig.show()
+
+        if type(savefig) is str:
+            fig.savefig(savefig + '.pdf')
+        elif savefig:
+            fig.savefig('pkplot.pdf')
+
         return fig
 
 
