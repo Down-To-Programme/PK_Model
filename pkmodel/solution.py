@@ -221,7 +221,6 @@ class Solution:
         model1.legend()
         model2.legend()
         fig.tight_layout()
-        #plt.show()
         return fig
 
     def compare_separate(self, solution_2):
@@ -254,7 +253,6 @@ class Solution:
             compartment.set_xlabel('time [h]')
             compartment.set_title('Peripheral compartment #' + str(i + 1))
         fig.tight_layout()
-        #plt.show()
         return fig
 
     def generate_plot(self, compare=None,
@@ -290,5 +288,3 @@ class Solution:
             fig.savefig('pkplot.pdf')
 
         return fig
-
-
