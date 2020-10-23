@@ -54,7 +54,7 @@ class Protocol:
     """
     def __init__(self, dose_amount=1, subcutaneous=False,
                  k_a=1, continuous=False, continuous_period=[0, 0],
-                 instantaneous=True, dose_times=[0]):
+                 instantaneous=True, dose_times=[], instant_doses=[]):
         self.subcutaneous = subcutaneous
         self.k_a = k_a
         self.dose_amount = dose_amount
@@ -63,6 +63,7 @@ class Protocol:
         self.continuous_period = continuous_period
         self.dose_times = dose_times
         self.dose_times.sort()
+        self.instant_doses = instant_doses
 
     def change_dose(self, dose_amount):
         """
@@ -131,25 +132,30 @@ class Protocol:
 
         """
         dose_t_continuous, dose_t_instant = 0, 0
-        if self.instantaneous:
-            if t in self.dose_times:
-                dose_t_instant = self.dose_amount
+        # if self.instantaneous:
+        #     if t in self.dose_times:
+        #         dose_t_instant = self.dose_amount
 
 
         # My attempt at implementing the gaussian shit 
         # I have a feeling this is not a good way to do this 
         # I'm not sure what you guys think David, Matthew? 
         # I will need to update testing for this at some point 
-        gaussian = signal.gaussian(50, 0.5)
-        if self.instantaneous:
-            for item in self.dose_times:
-                if t <= item + 0.01 and t >= item - 0.01:
-                    times = np.linspace(start=item - 0.01, stop=item + 0.01,
-                                        num=50)
-                    times = list(times)
-                    if t in times:
-                        index = times.index(t)
-                        dose_t_instant = gaussian[index] * self.dose_amount
+        # gaussian = signal.gaussian(50, 0.5)
+        # if self.instantaneous:
+        #     for item in self.dose_times:
+        #         if t <= item + 0.01 and t >= item - 0.01:
+        #             times = np.linspace(start=item - 0.01, stop=item + 0.01,
+        #                                 num=50)
+        #             times = list(times)
+        #             if t in times:
+        #                 index = times.index(t)
+        #                 dose_t_instant = gaussian[index] * self.dose_amount
+
+        dose_width = 0.02
+        
+        for dose_size, dose_time in zip(self.instant_doses, self.dose_times):
+            dose_t_instant += dose_size*easy_gaus(t, dose_time, dose_width)
 
         if self.continuous:
             if t < self.continuous_period[1] and \
@@ -160,6 +166,8 @@ class Protocol:
         return dose_t
 
 
+def easy_gaus(x, mean, std):
+    return np.exp(-.5*(((x-mean)/std)**2))/(std*np.sqrt(2*np.pi))
 
 
 
