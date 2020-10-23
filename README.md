@@ -74,3 +74,4 @@ This package was created under the MIT License. Read more about this at https://
 
 * https://dtp-pk-model.readthedocs.io/en/latest/
 * https://codecov.io/gh/Down-To-Programme/PK_Model
+* https://bettercodehub.com/results/Down-To-Programme/PK_Model
