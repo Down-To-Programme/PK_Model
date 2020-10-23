@@ -208,7 +208,8 @@ class Solution:
         model1.legend()
         model2.legend()
         fig.tight_layout()
-        plt.show()
+        #plt.show()
+        return fig
 
     def compare_separate(self, solution_2):
         """
@@ -256,12 +257,13 @@ class Solution:
         :param separate: If False (default), will show all compartments on the
         same plot. Set to True if you want 1 plot per compartment.
         """
+        fig = None
         if compare is None:
-            self.plot(separate=separate)
+            fig = self.plot(separate=separate)
         else:
             assert type(compare) is Solution, 'compare should be a Solution'
             if not separate:
-                self.compare_plots(compare)
+                fig = self.compare_plots(compare)
             elif separate:
-                self.compare_separate(compare)
-        return
+                fig = self.compare_separate(compare)
+        return fig
