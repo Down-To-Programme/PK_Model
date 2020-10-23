@@ -1,12 +1,4 @@
-![Run unit tests for pkmodel](https://github.com/D-own-T-o-P-rogramme/PK_Model/workflows/Run%20unit%20tests%20for%20pkmodel/badge.svg)
-
-[![BCH compliance](https://bettercodehub.com/edge/badge/Down-To-Programme/PK_Model?branch=master)](https://bettercodehub.com/)
-
-[![codecov](https://codecov.io/gh/Down-To-Programme/PK_Model/branch/master/graph/badge.svg?token=UXOY8KCZQI)](undefined)
-
-[![Documentation Status](https://readthedocs.org/projects/down-to-programmepkmodel/badge/?version=latest)](https://down-to-programmepkmodel.readthedocs.io/en/latest/?badge=latest)
-
-![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+![Run unit tests for pkmodel](https://github.com/D-own-T-o-P-rogramme/PK_Model/workflows/Run%20unit%20tests%20for%20pkmodel/badge.svg) [![BCH compliance](https://bettercodehub.com/edge/badge/Down-To-Programme/PK_Model?branch=master)](https://bettercodehub.com/) [![codecov](https://codecov.io/gh/Down-To-Programme/PK_Model/branch/master/graph/badge.svg?token=UXOY8KCZQI)](undefined) [![Documentation Status](https://readthedocs.org/projects/down-to-programmepkmodel/badge/?version=latest)](https://down-to-programmepkmodel.readthedocs.io/en/latest/?badge=latest) ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 
 
 # PK_Model, a pharmacokinetic model developed by students on the Oxford Interdisciplinary Bioscience DTP
