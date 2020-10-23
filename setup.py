@@ -34,7 +34,7 @@ def get_readme():
 # Go!
 setup(
     # Module name (lowercase)
-    name='pkmodel',
+    name='dtp_pkmodel',
 
     # Version
     version=get_version(),
@@ -42,6 +42,8 @@ setup(
     description='An example Python project.',
 
     long_description=get_readme(),
+
+    long_description_content_type="text/markdown",
 
     license='MIT license',
 
@@ -61,10 +63,10 @@ setup(
     # List of dependencies
     install_requires=[
         # Dependencies go here!
-        'numpy',
-        'matplotlib',
-        'scipy',
-        'PyQt5',
+        'numpy=1.19.2',
+        'matplotlib=3.3.2',
+        'scipy=1.5.3',
+        'PyQt5=5.15.1',
     ],
     extras_require={
         'docs': [
