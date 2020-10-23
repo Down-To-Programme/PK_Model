@@ -26,5 +26,7 @@ print('Clearance rate', model1.CL)
 
 solution1 = solution.Solution(model1, protocol1)
 solution2 = solution.Solution(model1, protocol2)
+
 solution1.generate_plot(compare=solution2,
                       separate=False, show=True, savefig=True)
+

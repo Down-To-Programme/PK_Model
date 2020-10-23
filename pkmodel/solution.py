@@ -87,11 +87,11 @@ class Solution:
         Vc = self.model.Vc  # volume of the main compartment
         CL = self.model.CL  # Clearance rate
 
-        cleared = state[1] / Vc * CL  # flux going out of the main compartment
-        dq_dt = [0, 0]  # [dq0, dqc, dq_p1, dq_p2]
+        cleared = state[0] / Vc * CL  # flux going out of the main compartment
+        dq_dt = np.zeros(self.model.size + 1)  # [dqc, dq_p1, dq_p2, dq0]
         dq0_dt = self.protocol.dose_time_function(t)
-        dq0_dt -= self.protocol.k_a * state[0]
-        dq_dt[0] = dq0_dt
+        dq0_dt -= self.protocol.k_a * state[-1]
+        dq_dt[-1] = dq0_dt
 
         flux_sum = 0  # sum of flux between compartments
         # loop over peripheral compartments
@@ -101,10 +101,10 @@ class Solution:
             Q_pi = self.model.Qps[comp - 1]
             # volume of i-th peripheral compartment
             V_pi = self.model.Vps[comp - 1]
-            flux = Q_pi * (state[1] / Vc - state[comp + 1] / V_pi)
-            dq_dt.append(flux)
+            flux = Q_pi * (state[0] / Vc - state[comp] / V_pi)
+            dq_dt[comp] = flux
             flux_sum += flux
-        dq_dt[1] = self.protocol.k_a * state[0] - cleared - flux_sum
+        dq_dt[0] = self.protocol.k_a * state[-1] - cleared - flux_sum
         return dq_dt
 
     def solver(self):
@@ -170,6 +170,11 @@ class Solution:
                 subplot.set_title('Peripheral compartment #' + str(i + 1))
             else:
                 model.plot(sol.t, sol.y[i + 1, :], label=label)
+
+        # plot subcutanous injections compartment
+        if self.protocol.subcutaneous and not separate:
+            model.plot(sol.t, sol.y[-1, :], label='- q_0')
+
         plt.legend()
         fig.tight_layout()
         return fig
@@ -204,6 +209,11 @@ class Solution:
                 model1.plot(sol1.t, sol1.y[i, :], label=label)
             if i < len(sol2.y):
                 model2.plot(sol2.t, sol2.y[i, :], label=label)
+        # plot subcutanous injections compartment
+        if self.protocol.subcutaneous:
+            model1.plot(sol1.t, sol1.y[-1, :], label='- q_0')
+        if solution_2.protocol.subcutaneous:
+            model2.plot(sol2.t, sol2.y[-1, :], label='- q_0')
         model1.legend()
         model2.legend()
         fig.tight_layout()
