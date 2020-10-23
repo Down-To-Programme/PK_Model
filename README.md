@@ -17,7 +17,7 @@ This is a package to run a user-specifed pharmacokinetic model (PK model). The u
 The package is pip installable and can be run on the latest windows, ubuntu and macos operating systems.
 
 
-## Quickstart 
+# Quickstart 
 
 1. First clone or fork this repository and navigate to the repository's top directory
 
@@ -35,7 +35,7 @@ The package is pip installable and can be run on the latest windows, ubuntu and 
 
 `pip install –e .` 
 
-### Running the model
+## Running the model
 
 You can run the model from the command line with:
 
@@ -52,8 +52,69 @@ open your python interpreter and import:
 
 `import pkmodel`
 
+# Directory structure
 
-## Raising issues 
+.
+├── LICENSE
+├── README.md
+├── build
+│   ├── bdist.macosx-10.15-x86_64
+│   └── lib
+│       └── pkmodel
+│           ├── __init__.py
+│           ├── model.py
+│           ├── protocol.py
+│           ├── solution.py
+│           ├── tests
+│           │   ├── __init__.py
+│           │   ├── test_model.py
+│           │   ├── test_pipeline.py
+│           │   ├── test_protocol.py
+│           │   └── test_solution.py
+│           └── version_info.py
+├── dist
+│   ├── dtp_pkmodel-1.0.1-py3-none-any.whl
+│   └── dtp_pkmodel-1.0.1.tar.gz
+├── docs
+│   ├── Makefile
+│   ├── conf.py
+│   ├── index.rst
+│   └── make.bat
+├── dtp_pkmodel.egg-info
+│   ├── PKG-INFO
+│   ├── SOURCES.txt
+│   ├── dependency_links.txt
+│   ├── requires.txt
+│   └── top_level.txt
+├── pkmodel
+│   ├── __init__.py
+│   ├── __pycache__
+│   │   ├── __init__.cpython-38.pyc
+│   │   ├── model.cpython-38.pyc
+│   │   ├── protocol.cpython-38.pyc
+│   │   ├── solution.cpython-38.pyc
+│   │   └── version_info.cpython-38.pyc
+│   ├── model.py
+│   ├── protocol.py
+│   ├── solution.py
+│   ├── tests
+│   │   ├── __init__.py
+│   │   ├── __pycache__
+│   │   │   ├── __init__.cpython-38.pyc
+│   │   │   ├── test_model.cpython-38.pyc
+│   │   │   ├── test_protocol.cpython-38.pyc
+│   │   │   └── test_solution.cpython-38.pyc
+│   │   ├── test_model.py
+│   │   ├── test_pipeline.py
+│   │   ├── test_protocol.py
+│   │   └── test_solution.py
+│   └── version_info.py
+├── requirements.txt
+├── setup.py
+└── try_out_script.py
+
+
+# Raising issues 
 
 If you spot an issue and would like us to fix it, let us know by:
 
@@ -79,11 +140,11 @@ If you spot an issue and would like us to fix it, let us know by:
 
 5. Make a pull request on GitHub
 
-## License
+# License
 
 This package was created under the MIT License. Read more about this at https://github.com/Down-To-Programme/PK_Model/blob/master/LICENSE
 
-## Links
+# Links
 
 * https://dtp-pk-model.readthedocs.io/en/latest/
 * https://codecov.io/gh/Down-To-Programme/PK_Model
