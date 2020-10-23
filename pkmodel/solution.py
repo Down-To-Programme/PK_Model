@@ -35,6 +35,9 @@ class Solution:
         self.model = model
         self.protocol = protocol
         self.t_eval = np.linspace(0, tmax, nsteps)
+        self.tmax = tmax
+        self.nsteps = nsteps
+
         self.solver()
 
     def rhs_intravenous(self, t, y):
@@ -129,7 +132,8 @@ class Solution:
         sol = scipy.integrate.solve_ivp(
             fun=lambda t, y: step_func(t, y),
             t_span=[self.t_eval[0], self.t_eval[-1]],
-            y0=self.y0, t_eval=self.t_eval
+            y0=self.y0, t_eval=self.t_eval,
+            max_step=self.tmax / self.nsteps
         )
         self.sol = sol
         return sol
