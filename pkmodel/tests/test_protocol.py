@@ -47,9 +47,11 @@ class ProtocolTest(unittest.TestCase):
                              continuous_period=[1, 2],
                              instantaneous=True, instant_doses=[10, 20],
                              dose_times=[0.5, 1.5])
-        
+
         dose_0 = dosing.dose_time_function(0.5)
         dose_1 = dosing.dose_time_function(1.5)
 
-        self.assertLessEqual(dose_0-(10/(0.02*np.sqrt(2*np.pi))), 0.0001)
-        self.assertLessEqual(dose_1-(10+20/(0.02*np.sqrt(2*np.pi))), 0.0001)
+        self.assertLessEqual(dose_0 - (10 / (0.02 * np.sqrt(2 * np.pi))),
+                             0.0001)
+        self.assertLessEqual(dose_1 - (10 + 20 / (0.02 * np.sqrt(2 * np.pi))),
+                             0.0001)
