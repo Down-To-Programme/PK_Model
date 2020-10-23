@@ -154,16 +154,14 @@ class Protocol:
         dose_t_continuous, dose_t_instant = 0, 0
         dose_width = 0.02
 
-        if self.instantaneous:
-            for dose_size, dose_time in zip(self.instant_doses,
-                                            self.dose_times):
-                dose_t_instant += dose_size * easy_gaus(t, dose_time,
-                                                        dose_width)
+        for dose_size, dose_time in zip(self.instant_doses,
+                                        self.dose_times):
+            dose_t_instant += easy_gaus(t, dose_time, dose_width) * dose_size \
+                * self.instantaneous
 
-        if self.continuous:
-            if t < self.continuous_period[1] and \
-               t >= self.continuous_period[0]:
-                dose_t_continuous = self.dose_amount
+        if self.continuous and t < self.continuous_period[1] and \
+           t >= self.continuous_period[0]:
+            dose_t_continuous = self.dose_amount
 
         dose_t = dose_t_continuous + dose_t_instant
         return dose_t
