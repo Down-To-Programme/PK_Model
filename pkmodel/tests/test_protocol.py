@@ -66,10 +66,8 @@ class ProtocolTest(unittest.TestCase):
     def test_modify_dose_type(self):
         dosing = pk.Protocol()
         self.assertEqual(dosing.subcutaneous, False)
-        self.assertEqual(dosing.intravenous, True)
-        dosing.modify_dose_type(True, False, 0.3)
+        dosing.modify_dose_type(True, 0.3)
         self.assertEqual(dosing.subcutaneous, True)
-        self.assertEqual(dosing.intravenous, False)
         self.assertEqual(dosing.k_a, 0.3)
 
     def test_make_continuous(self):

@@ -81,15 +81,12 @@ class Protocol:
         """
         self.dose_amount = dose_amount
 
-    def modify_dose_type(self, subcutaneous, intravenous, k_a=1):
+    def modify_dose_type(self, subcutaneous, k_a=1):
         """
 
         Paramater: subcutaneous: boolean, required.
             When set as True this specifies there is subcutaneous dosing, and
-            when False it ensures there is no subcutaneous dosing.
-        Paramater: intavenous: boolean, required.
-            When set as True this specifies there is intravenous dosing, and
-            when False it ensures there is no intravenous dosing.
+            when False it specifies intravenous dosing.
         Paramater: k_a: numeric, optional, default = 1.
             The absorption rate for the subcutaneous dosing.
 
@@ -103,9 +100,7 @@ class Protocol:
         self.k_a = k_a
         if subcutaneous:
             self.subcutaneous = True
-            self.intravenous = False
-        elif intravenous:
-            self.intravenous = True
+        else:
             self.subcutaneous = False
 
     def make_continuous(self, time_added, time_removed):
