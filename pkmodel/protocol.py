@@ -36,11 +36,11 @@ class Protocol:
         This parameter specifies whether any instantaneous doses of X ng
         take place.
 
-    dose_times: numerical list, optional, default = []
+    dose_times: numerical list, optional, default = [0]
         This parameter is a list of numerics that specify the times at which
         instantaneous doses of X ng are applied.
 
-    instant_doses: numerical list, optional, default = [].
+    instant_doses: numerical list, optional, default = [1].
         This parameter is a list of numerics that specify the doses of X ng
         given instantaneously at the times specified in the dose_times param.
 
@@ -59,7 +59,7 @@ class Protocol:
     """
     def __init__(self, dose_amount=1, subcutaneous=False,
                  k_a=1, continuous=False, continuous_period=[0, 0],
-                 instantaneous=True, dose_times=[], instant_doses=[]):
+                 instantaneous=True, dose_times=[0], instant_doses=[1]):
         self.subcutaneous = subcutaneous
         self.k_a = k_a
         self.dose_amount = dose_amount
@@ -81,15 +81,12 @@ class Protocol:
         """
         self.dose_amount = dose_amount
 
-    def modify_dose_type(self, subcutaneous, intravenous, k_a=1):
+    def modify_dose_type(self, subcutaneous, k_a=1):
         """
 
         Paramater: subcutaneous: boolean, required.
             When set as True this specifies there is subcutaneous dosing, and
-            when False it ensures there is no subcutaneous dosing.
-        Paramater: intavenous: boolean, required.
-            When set as True this specifies there is intravenous dosing, and
-            when False it ensures there is no intravenous dosing.
+            when False it specifies intravenous dosing.
         Paramater: k_a: numeric, optional, default = 1.
             The absorption rate for the subcutaneous dosing.
 
@@ -103,9 +100,7 @@ class Protocol:
         self.k_a = k_a
         if subcutaneous:
             self.subcutaneous = True
-            self.intravenous = False
-        elif intravenous:
-            self.intravenous = True
+        else:
             self.subcutaneous = False
 
     def make_continuous(self, time_added, time_removed):
