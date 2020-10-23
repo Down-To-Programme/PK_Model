@@ -172,7 +172,7 @@ class Solution:
                 model.plot(sol.t, sol.y[i + 1, :], label=label)
         plt.legend()
         fig.tight_layout()
-        plt.show()
+        #plt.show()
         return fig
 
     def compare_plots(self, solution_2):
@@ -241,7 +241,7 @@ class Solution:
             compartment.set_xlabel('time [h]')
             compartment.set_title('Peripheral compartment #' + str(i + 1))
         fig.tight_layout()
-        plt.show()
+        #plt.show()
         return fig
 
     def generate_plot(self, compare=None, separate=False):
