@@ -1,3 +1,7 @@
+from scipy import signal
+import numpy as np
+
+
 class Protocol:
     """A Pharmokinetic (PK) protocol
 
@@ -131,6 +135,22 @@ class Protocol:
             if t in self.dose_times:
                 dose_t_instant = self.dose_amount
 
+
+        # My attempt at implementing the gaussian shit 
+        # I have a feeling this is not a good way to do this 
+        # I'm not sure what you guys think David, Matthew? 
+        # I will need to update testing for this at some point 
+        gaussian = signal.gaussian(50, 0.5)
+        if self.instantaneous:
+            for item in self.dose_times:
+                if t < item + 0.01 and t > item - 0.01:
+                    times = np.linspace(start=item - 0.01, stop=item + 0.01,
+                                        num=50)
+                    times = list(times)
+                    if t in times:
+                        index = times.index(t)
+                        dose_t_instant = gaussian[index] * self.dose_amount
+
         if self.continuous:
             if t < self.continuous_period[1] and \
                t >= self.continuous_period[0]:
@@ -138,3 +158,8 @@ class Protocol:
 
         dose_t = dose_t_continuous + dose_t_instant
         return dose_t
+
+
+
+
+
