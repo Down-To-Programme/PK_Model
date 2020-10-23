@@ -4,18 +4,19 @@ import scipy.integrate
 
 from pkmodel import model
 from pkmodel import solution
-import test_protocol
+from pkmodel import protocol
 
-# def dose(t, X=1):
-#     return X
+protocol1 = protocol.Protocol(dose_amount=1, subcutaneous=False,
+                 k_a=1, continuous=True, continuous_period=[0, 1],
+                 instantaneous=False, dose_times=[0])
+print(protocol1.dose_time_function(0))
+print(protocol1.k_a)
 
-protocol = test_protocol.Protocol(dose_amount =1., subcutaneous=True, 
-    k_a=100, continuous=True, continuous_period=[0, 0], dose_times=[],
-    multiple=False)
-print(protocol.dose_time_function(0))
-print(protocol.k_a)
+protocol2 = protocol.Protocol(dose_amount=1, subcutaneous=True,
+                 k_a=1, continuous=True, continuous_period=[0, 1],
+                 instantaneous=False, dose_times=[0])
 
-model1 = model.Model(Vc=1., Vps=[1.,1.], Qps = [100.,2.], CL=3.)
+model1 = model.Model(Vc=1., Vps=[1.,1.], Qps = [1.,2.], CL=3.)
 
 print('Model size ', model1.size)
 print('Volume of central compartment ', model1.Vc)
@@ -23,16 +24,7 @@ print('Compartment volumes', model1.Vps)
 print('Transition rates', model1.Qps)
 print('Clearance rate', model1.CL)
 
-solution1 = solution.Solution(model1, protocol)
-sol = solution1.solver()
-#print(sol)
-
-fig = plt.figure()
-plt.plot(sol.t, sol.y[0, :], label='- q_0')
-plt.plot(sol.t, sol.y[1, :], label='- q_c')
-plt.plot(sol.t, sol.y[2, :], label='- q_p1')
-plt.plot(sol.t, sol.y[3, :], label='- q_p2')
-plt.legend()
-plt.ylabel('drug mass [ng]')
-plt.xlabel('time [h]')
-plt.show()
+solution1 = solution.Solution(model1, protocol1)
+solution2 = solution.Solution(model1, protocol2)
+solution1.generate_plot(compare=solution2,
+                      separate=False, show=True, savefig=True)
