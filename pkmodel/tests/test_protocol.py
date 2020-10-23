@@ -28,7 +28,7 @@ class ProtocolTest(unittest.TestCase):
         dosing = pk.Protocol(dose_amount=10, subcutaneous=True,
                              k_a=0.3, continuous=True,
                              continuous_period=[1, 2],
-                             instantaneous=True)
+                             instantaneous=False)
         dose_0 = dosing.dose_time_function(0)
         dose_1 = dosing.dose_time_function(0.5)
         dose_2 = dosing.dose_time_function(1.1)
@@ -55,3 +55,44 @@ class ProtocolTest(unittest.TestCase):
                              0.0001)
         self.assertLessEqual(dose_1 - (10 + 20 / (0.02 * np.sqrt(2 * np.pi))),
                              0.0001)
+
+    def test_change_dose(self):
+        dosing = pk.Protocol()
+
+        self.assertEqual(dosing.dose_amount, 1)
+        dosing.change_dose(100)
+        self.assertEqual(dosing.dose_amount, 100)
+
+    def test_modify_dose_type(self):
+        dosing = pk.Protocol()
+        self.assertEqual(dosing.subcutaneous, False)
+        self.assertEqual(dosing.intravenous, True)
+        dosing.modify_dose_type(True, False, 0.3)
+        self.assertEqual(dosing.subcutaneous, True)
+        self.assertEqual(dosing.intravenous, False)
+        self.assertEqual(dosing.k_a, 0.3)
+
+    def test_make_continuous(self):
+        dosing = pk.Protocol()
+        self.assertEqual(dosing.continuous, False)
+        self.assertEqual(dosing.continuous_period, [0, 0])
+        dosing.make_continuous(4, 10)
+        self.assertEqual(dosing.continuous, True)
+        self.assertEqual(dosing.continuous_period, [4, 10])
+
+    def test_add_dose(self):
+        dosing = pk.Protocol(instantaneous=False, instant_doses=[],
+                             dose_times=[])
+        self.assertEqual(dosing.instantaneous, False)
+        self.assertEqual(dosing.dose_times, [])
+        self.assertEqual(dosing.instant_doses, [])
+
+        dosing.add_dose(1, 1)
+        self.assertEqual(dosing.instantaneous, True)
+        self.assertEqual(dosing.dose_times, [1])
+        self.assertEqual(dosing.instant_doses, [1])
+
+        dosing.add_dose(5, 1)
+        self.assertEqual(dosing.instantaneous, True)
+        self.assertEqual(dosing.dose_times, [1, 5])
+        self.assertEqual(dosing.instant_doses, [1, 1])

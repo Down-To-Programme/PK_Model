@@ -36,11 +36,11 @@ class Protocol:
         This parameter specifies whether any instantaneous doses of X ng
         take place.
 
-    dose_times: numerical list, optional, default = []
+    dose_times: numerical list, optional, default = [0]
         This parameter is a list of numerics that specify the times at which
         instantaneous doses of X ng are applied.
 
-    instant_doses: numerical list, optional, default = [].
+    instant_doses: numerical list, optional, default = [1].
         This parameter is a list of numerics that specify the doses of X ng
         given instantaneously at the times specified in the dose_times param.
 
@@ -59,7 +59,7 @@ class Protocol:
     """
     def __init__(self, dose_amount=1, subcutaneous=False,
                  k_a=1, continuous=False, continuous_period=[0, 0],
-                 instantaneous=True, dose_times=[], instant_doses=[]):
+                 instantaneous=True, dose_times=[0], instant_doses=[1]):
         self.subcutaneous = subcutaneous
         self.k_a = k_a
         self.dose_amount = dose_amount
