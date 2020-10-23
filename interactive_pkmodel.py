@@ -46,7 +46,8 @@ def input_k_a():
     k_a = 1
     if protocol == 's':
         sub = True
-        print('Enter absorption of drug administration:\n')
+        print('\nEnter absorption rate of drug '
+              'administration for subcutaneous dosing:')
         k_a = input('k_a (/h): [1] ') or 1
         try:
             k_a = float(k_a)
@@ -167,7 +168,8 @@ def print_intro():
           'A solver will solve the differential')
     print('equations that model the pharmacokinetics of the compartments, '
           'and graphs comparing the')
-    print('solutions of different model parameters will be outputted.\n \n')
+    print('solutions of different model parameters will be outputted.')
+    print('Default values are within brackets (e.g. [0]).\n \n')
 
     print('Enter the parameters of the main model and protocol:')
     print('___________________________________________________')
