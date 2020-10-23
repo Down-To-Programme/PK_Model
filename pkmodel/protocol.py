@@ -1,3 +1,6 @@
+import numpy as np
+
+
 class Protocol:
     """A Pharmokinetic (PK) protocol
 
@@ -33,24 +36,30 @@ class Protocol:
         This parameter specifies whether any instantaneous doses of X ng
         take place.
 
-    dose_times: numerical list, optional, default = [0]
+    dose_times: numerical list, optional, default = []
         This parameter is a list of numerics that specify the times at which
         instantaneous doses of X ng are applied.
+
+    instant_doses: numerical list, optional, default = [].
+        This parameter is a list of numerics that specify the doses of X ng
+        given instantaneously at the times specified in the dose_times param.
 
     Methods
     -------
     The method dose_time_function() for a particular time ouputs the dose(t).
 
-    Several other methods have been defined to allow modifcation of the dosing
-    protocol without the necessity of reinitialising the protocol for every
-    modification. These are listed below:
+    Several other methods have been defined to allow certain modifcations of
+    the dosing protocol without the necessity of reinitialising the protocol
+    for every modification. Until other functions are supported other
+    modifications require reintialising the object of class Protocol.
+    Supported methods are listed below:
 
-    change_dose(), make_subcutaneous(), make_continuous(), add_dose_time()
+    change_dose(), modify_dose_type(), make_continuous(), add_dose()
 
     """
     def __init__(self, dose_amount=1, subcutaneous=False,
                  k_a=1, continuous=False, continuous_period=[0, 0],
-                 instantaneous=True, dose_times=[0]):
+                 instantaneous=True, dose_times=[], instant_doses=[]):
         self.subcutaneous = subcutaneous
         self.k_a = k_a
         self.dose_amount = dose_amount
@@ -58,7 +67,7 @@ class Protocol:
         self.instantaneous = instantaneous
         self.continuous_period = continuous_period
         self.dose_times = dose_times
-        self.dose_times.sort()
+        self.instant_doses = instant_doses
 
     def change_dose(self, dose_amount):
         """
@@ -72,18 +81,32 @@ class Protocol:
         """
         self.dose_amount = dose_amount
 
-    def make_subcutaneous(self, k_a):
+    def modify_dose_type(self, subcutaneous, intravenous, k_a=1):
         """
 
-        Paramater: k_a: the absorption rate for the subcutaneous dosing.
+        Paramater: subcutaneous: boolean, required.
+            When set as True this specifies there is subcutaneous dosing, and
+            when False it ensures there is no subcutaneous dosing.
+        Paramater: intavenous: boolean, required.
+            When set as True this specifies there is intravenous dosing, and
+            when False it ensures there is no intravenous dosing.
+        Paramater: k_a: numeric, optional, default = 1.
+            The absorption rate for the subcutaneous dosing.
 
 
-        This method modfies an object of class Protocol to change to
-        subcutaneous dosing and specifies the k_a values for that dosing type.
+        This method modfies an object of class Protocol to allow users to
+        specifiy whether there is subcutaneous or intravenous dosing.
+        Additionally for subcutaneous dosing it allows users to modify the
+        value of k_a.
 
         """
         self.k_a = k_a
-        self.subcutaneous = True
+        if subcutaneous:
+            self.subcutaneous = True
+            self.intravenous = False
+        elif intravenous:
+            self.intravenous = True
+            self.subcutaneous = False
 
     def make_continuous(self, time_added, time_removed):
         """
@@ -102,34 +125,45 @@ class Protocol:
         self.continuous_period[0] = time_added
         self.continuous_period[1] = time_removed
 
-    def add_dose_time(self, time):
+    def add_dose(self, time, dose):
         """
 
-        Paramater: time: Additional time at which you want there to be an
-        instantaneous dose of X ng.
+        Paramater: time: numeric, required
+            Additional time at which you want there to be an instantaneous
+            dose.
+        Paramater: dose: numeric, required
+            The dose in ng that you want applied at this timepoint.
 
 
         This method modifies an object of class Protocol to add an additional
-        user specified instantaneous dose time.
+        user specified instantaneous dose of dose ng at time. The method
+        also specifies that instantaneous dosing does happen should it not
+        already be specified.
 
         """
         self.dose_times.append(time)
-        self.dose_times.sort()
+        self.instant_doses.append(dose)
+        self.instantaneous = True
 
     def dose_time_function(self, t):
         """
 
-        Paramater: t: time at which you want dose(t) to be returned.
+        Paramater: t: numeric, required.
+            The time at which you want dose(t) to be returned.
 
-
-        Returns: Dose(t) for the specific dosing protocol set up in the object
+        Returns: numeric.
+            Dose(t) for the specific dosing protocol set up in the object
         of class Protocol.
 
         """
         dose_t_continuous, dose_t_instant = 0, 0
+        dose_width = 0.02
+
         if self.instantaneous:
-            if t in self.dose_times:
-                dose_t_instant = self.dose_amount
+            for dose_size, dose_time in zip(self.instant_doses,
+                                            self.dose_times):
+                dose_t_instant += dose_size * easy_gaus(t, dose_time,
+                                                        dose_width)
 
         if self.continuous:
             if t < self.continuous_period[1] and \
@@ -138,3 +172,27 @@ class Protocol:
 
         dose_t = dose_t_continuous + dose_t_instant
         return dose_t
+
+
+def easy_gaus(x, mean, std):
+    """
+    A function which returns generates a gausssian fucntion from user inputted
+    mean and std deviation parameters and returns the value of the function at
+    user inputted x.
+
+    Parameter: x: numeric, required
+        The value at which you wish the gaussian function to be evaluated.
+    Parameter: mean: numeric, required
+        The mean or the positon on the x axis at which the gaussian function
+        is centred or at its peak.
+    Parameter: std: numeric, required
+        The standard deviation of the gaussian function.
+    Returns: float
+        The gaussian function evaluated at x, for the use specified parameters.
+
+
+    """
+    return np.exp(-0.5 * (((x - mean) / std)**2)) / (std * np.sqrt(2 * np.pi))
+
+
+
