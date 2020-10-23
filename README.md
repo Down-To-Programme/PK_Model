@@ -4,6 +4,8 @@
 
 [![codecov](https://codecov.io/gh/Down-To-Programme/PK_Model/branch/master/graph/badge.svg?token=UXOY8KCZQI)](undefined)
 
+[![Documentation Status](https://readthedocs.org/projects/down-to-programmepkmodel/badge/?version=latest)](https://down-to-programmepkmodel.readthedocs.io/en/latest/?badge=latest)
+
 
 # PK_Model, a pharmacokinetic model developed by students on the Oxford Interdisciplinary Bioscience DTP
 
