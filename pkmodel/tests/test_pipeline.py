@@ -96,3 +96,36 @@ class PipelineTest(unittest.TestCase):
         solution = pk.Solution(model=model, protocol=dosing)
         sol_fig = solution.generate_plot()
         self.assertIsInstance(sol_fig, matplotlib.figure.Figure)
+
+    def test_compare_pipeline(self):
+        """
+        Tests the whole pipeline;
+        - make model x2
+        - make protocol x2
+        - make solution x2
+        - plot and compare the solutions
+        for an intravenous dosing protocol.
+        """
+
+        model = pk.Model(Vc=2., Vps=[3, 1], Qps=[1, 3], CL=3.)
+
+        dosing = pk.Protocol(dose_amount=10, subcutaneous=True,
+                             k_a=0.3, continuous=True,
+                             continuous_period=[0.2, 0.6],
+                             instantaneous=True,
+                             dose_times=[0, .1, .2, .3])
+
+        solution = pk.Solution(model=model, protocol=dosing)
+
+        model2 = pk.Model(Vc=2., Vps=[4, 5], Qps=[8, 9], CL=3.)
+
+        dosing2 = pk.Protocol(dose_amount=10, subcutaneous=True,
+                              k_a=0.3, continuous=True,
+                              continuous_period=[0.2, 0.6],
+                              instantaneous=True,
+                              dose_times=[0, .1, .2, .3])
+
+        solution2 = pk.Solution(model=model2, protocol=dosing2)
+
+        sol_fig = solution.generate_plot(compare=solution2)
+        self.assertIsInstance(sol_fig, matplotlib.figure.Figure)
