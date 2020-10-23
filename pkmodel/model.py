@@ -4,7 +4,6 @@
 
 class Model:
     """A Pharmokinetic (PK) model
-    Hello REadthecods
     Parameters
     ----------
 
