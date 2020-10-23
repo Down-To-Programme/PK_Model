@@ -243,7 +243,8 @@ class Solution:
         #plt.show()
         return fig
 
-    def generate_plot(self, compare=None, separate=False, show=False, savefig=False):
+    def generate_plot(self, compare=None,
+                      separate=False, show=False, savefig=False):
         """
         Calls appropriate function to generate plots of the drug
         quantity per compartment over time for the corresponding model

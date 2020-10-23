@@ -22,9 +22,9 @@ class PipelineTest(unittest.TestCase):
         model = pk.Model(Vc=2., Vps=[1, 2], Qps=[3, 4], CL=3.)
 
         dosing = pk.Protocol(dose_amount=10, subcutaneous=False,
-                                k_a=0.3, continuous=True,
-                                continuous_period=[0.2, 0.6],
-                                instantaneous=True, dose_times=[0, .1, .2, .3])
+                             k_a=0.3, continuous=True,
+                             continuous_period=[0.2, 0.6],
+                             instantaneous=True, dose_times=[0, .1, .2, .3])
 
         solution = pk.Solution(model=model, protocol=dosing)
         self.assertEqual(solution.sol.y.shape[0], solution.model.size)
