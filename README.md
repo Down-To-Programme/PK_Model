@@ -32,8 +32,8 @@ source venv/bin/activate
 ## Running the model
 
 
-(Most user-friendly option:) You can run an interactive script that will take you through the different steps needed to specify the parameters of the PK model. It will then generate a plot, giving you the options to compare two different models and to save the generated figure. 
-Run this script with the command: 
+\[Most user-friendly option:\] You can run an interactive script that will take you through the different steps needed to specify the parameters of the PK model. It will then generate a plot, giving you the options to compare two different models and to save the generated figure. 
+Run this script from the command line with: 
 
 `python interactive_pkmodel.py`
 
