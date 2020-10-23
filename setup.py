@@ -63,10 +63,10 @@ setup(
     # List of dependencies
     install_requires=[
         # Dependencies go here!
-        'numpy=1.19.2',
-        'matplotlib=3.3.2',
-        'scipy=1.5.3',
-        'PyQt5=5.15.1',
+        'numpy>=1.19.2',
+        'matplotlib>=3.3.2',
+        'scipy>=1.5.3',
+        'PyQt5>=5.15.1',
     ],
     extras_require={
         'docs': [
