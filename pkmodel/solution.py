@@ -282,7 +282,7 @@ class Solution:
                 fig = self.compare_separate(compare)
 
         if show:
-            fig.show()
+            plt.show()
 
         if type(savefig) is str:
             fig.savefig(savefig + '.pdf')
