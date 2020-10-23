@@ -6,7 +6,7 @@
 
 [![Documentation Status](https://readthedocs.org/projects/down-to-programmepkmodel/badge/?version=latest)](https://down-to-programmepkmodel.readthedocs.io/en/latest/?badge=latest)
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)]
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 
 
 # PK_Model, a pharmacokinetic model developed by students on the Oxford Interdisciplinary Bioscience DTP
