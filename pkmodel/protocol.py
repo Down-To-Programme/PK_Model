@@ -143,7 +143,7 @@ class Protocol:
         gaussian = signal.gaussian(50, 0.5)
         if self.instantaneous:
             for item in self.dose_times:
-                if t < item + 0.01 and t > item - 0.01:
+                if t <= item + 0.01 and t >= item - 0.01:
                     times = np.linspace(start=item - 0.01, stop=item + 0.01,
                                         num=50)
                     times = list(times)
