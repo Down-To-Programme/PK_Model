@@ -21,15 +21,17 @@ The package is pip installable and can be run on the latest windows, ubuntu and 
 
 1. First clone or fork this repository and navigate to the repository's top directory
 
-`git clone https://github.com/Down-To-Programme/PK_Model.git`
-
-`cd PK_Model`
+```
+git clone https://github.com/Down-To-Programme/PK_Model.git
+cd PK_Model
+```
 
 2. We recommend that you create a virtual environment with python versons 3.6+ to use our package. Tests are run continuously on these python versions to ensure the package works, but previous versions are not tested. 
 
-`python3 –m venv venv` 
-
-`source venv/bin/activate`
+```
+python3 –m venv venv
+source venv/bin/activate
+```
 
 3. To install requirements and dependencies, you can use our setup.py file by typing:
 
@@ -48,12 +50,14 @@ Alternatively you can pip install the dtp-pkmodel package with:
 
 open your python interpreter and import:
 
-`python`
-
-`import pkmodel`
+```
+python
+>>> import pkmodel
+```
 
 # Directory structure
 
+```
 .
 ├── LICENSE
 ├── README.md
@@ -112,7 +116,7 @@ open your python interpreter and import:
 ├── requirements.txt
 ├── setup.py
 └── try_out_script.py
-
+```
 
 # Raising issues 
 
@@ -134,11 +138,13 @@ If you spot an issue and would like us to fix it, let us know by:
 
 (You can find out what files need to be added with `git status`)
 
-`git commit –m "issue-number-comment"` 
-
-`git push origin <new-branch> `
+```
+git commit –m "issue-number-comment" 
+git push origin <new-branch>
+```
 
 5. Make a pull request on GitHub
+
 
 # License
 
