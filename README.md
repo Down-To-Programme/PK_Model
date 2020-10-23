@@ -69,3 +69,8 @@ If you spot an issue and would like us to fix it, use
 ## License
 
 This package was created under the MIT License. Read more about this at https://github.com/Down-To-Programme/PK_Model/blob/master/LICENSE
+
+## Links
+
+* https://dtp-pk-model.readthedocs.io/en/latest/
+* https://codecov.io/gh/Down-To-Programme/PK_Model
