@@ -4,6 +4,7 @@ import pkmodel as pk
 import numpy as np
 import matplotlib
 
+
 class SolutionTest(unittest.TestCase):
     """
     Tests the :class:`Solution` class.
@@ -50,7 +51,6 @@ class SolutionTest(unittest.TestCase):
         self.assertIsInstance(solution.t_eval, np.ndarray)
         self.assertIsInstance(solution.y0, np.ndarray)
 
-
     def test_plotting(self):
         """
         Tests Solution for the ability to create separate plots for solutions.
@@ -69,7 +69,6 @@ class SolutionTest(unittest.TestCase):
 
         sol_fig = solution.generate_plot()
         self.assertIsInstance(sol_fig, matplotlib.figure.Figure)
-
 
     def test_plotting_separate(self):
         """
