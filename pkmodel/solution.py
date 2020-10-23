@@ -136,7 +136,7 @@ class Solution:
 
     def plot(self, separate=False):
         """
-        Generate a plot of the drug quantity per
+        Generate a figure of the drug quantity per
         compartment over time for the corresponding model
 
         :param separate: set to True if you want 1 plot per compartment
@@ -267,3 +267,5 @@ class Solution:
             elif separate:
                 fig = self.compare_separate(compare)
         return fig
+
+
