@@ -133,3 +133,6 @@ dmypy.json
 
 # Output plots
 *.pdf
+
+#Editor files
+.vscode
